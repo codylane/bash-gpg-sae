@@ -30,6 +30,11 @@ set -e
 GPG_KEY_ID="${GPG_KEY_ID:-}"
 DELETE_NON_ENCRYPTED_FILE_AFTER_ENCRYPT="${DELETE_NON_ENCRYPTED_FILE_AFTER_ENCRYPT:-Y}"
 
+# this env var allows to TTY allocation so that you can enter your password
+# when no TTY is present.
+# https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
+export GPG_TTY=$(tty)
+
 err() {
 
   echo "ERR: $* exiting" >&2
