@@ -51,6 +51,10 @@ decrypt() {
 
 encrypt() {
 
+  # remove the current encrypted file to avoid
+  # gpg prompting for the overwrite
+  [ -f "${1}.asc" ] && rm -f "${1}.asc"
+
   gpg -se -r "${GPG_KEY_ID}" -a "${1}"
 
 }
